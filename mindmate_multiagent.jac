@@ -1,9 +1,7 @@
 # MindMate Harmony Space - Multi-Agent Architecture
 # Multi-Agent System with OSP Graph and byLLM Integration
 
-import:py from datetime import datetime;
-import:py from typing import Any;
-import:py json;
+glob datetime = __import__('datetime');
 
 # ============================================================================
 # OSP GRAPH NODE TYPES
@@ -116,14 +114,15 @@ walker MoodAnalyzerAgent {
         print("🔍 MoodAnalyzerAgent: Starting mood analysis for user:", self.user_id);
         
         # Find user profile
-        visit [-->(`?UserProfile)(?user_id == self.user_id)];
+        root [0] ;
+        visit [-->];
     }
     
     can process_user with UserProfile entry {
         print(f"📊 Analyzing {here.mood_count} mood entries...");
         
         # Traverse mood entries
-        mood_nodes = [-->(`?MoodEntry)];
+        mood_nodes = [-->];
         self.mood_entries = [];
         
         for mood_node in mood_nodes {
